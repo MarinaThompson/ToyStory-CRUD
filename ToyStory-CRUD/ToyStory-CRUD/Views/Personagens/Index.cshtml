@@ -8,41 +8,25 @@
 <p>
     <a asp-action="Create">Criar novo</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tipo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fala)
-            </th>
-           
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+
+
+@foreach (var item in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="~/img/buzzlightyear2.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">
                 @Html.DisplayFor(modelItem => item.Tipo)
-            </td>
-            <td>
+            </h4>
+            <h5 class="card-subtitle">
                 @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fala)
-            </td>
-          
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
+            </h5>
+
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Fala)</p>
+            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
+
