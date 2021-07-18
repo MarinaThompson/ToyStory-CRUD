@@ -11,27 +11,31 @@
 </p>
 
 
-@foreach (var item in Model)
-{
-    var imagem = item.Foto;    
-    var imagePath = "/img/"+imagem+".jpg";
+<div class="card-group">
+    @foreach (var item in Model)
+    {
+        var imagem = item.Foto;
+        var imagePath = "/img/" + imagem + ".jpg";
 
-
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="@imagePath" />
-        <div class="card-body">
-            <h4 class="card-title">
-                @Html.DisplayFor(modelItem => item.Tipo)
-
-            </h4>
-            <h5 class="card-subtitle">
-                @Html.DisplayFor(modelItem => item.Nome)
-            </h5>
-            <p class="card-text">@Html.DisplayFor(modelItem => item.Fala)</p>
-            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+    
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+            <div class="card">
+                <img class="card-img-top imagem-card" src="@imagePath" alt="Imagem do Personagem escolhido">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </h4>
+                    <h5 class="card-subtitle">
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Fala)</p>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </div>
+            </div>
         </div>
-    </div>
-}
+    
 
+    }
+</div>

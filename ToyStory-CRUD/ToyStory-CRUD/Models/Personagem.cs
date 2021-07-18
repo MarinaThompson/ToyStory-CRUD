@@ -14,9 +14,10 @@ namespace ToyStory_CRUD.Models
         [Required]
         public string Tipo { get; set; }
         
-        [Required]
+        
         public string Fala { get; set; }
 
+        [Required]
         public string Foto { get; set; }
     }
 }
