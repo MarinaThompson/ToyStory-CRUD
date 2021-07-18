@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToyStory_CRUD.Data;
 
 namespace ToyStory_CRUD.Migrations
 {
     [DbContext(typeof(ToyStory_CRUDContext))]
-    partial class ToyStory_CRUDContextModelSnapshot : ModelSnapshot
+    [Migration("20210718120045_novaTabela")]
+    partial class novaTabela
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

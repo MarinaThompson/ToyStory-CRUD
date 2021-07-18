@@ -1,5 +1,5 @@
 ﻿var personagens = [
-    { tipo: 'Humano', nome: 'Andy Davis', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
+    { tipo: 'Humano', nome: 'Andy Davis', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['andy1', 'andy2', 'andy3'] },
     { tipo: 'Humano', nome: 'Sra. Davis', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
     { tipo: 'Humano', nome: 'Molly Davis', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
     { tipo: 'Humano', nome: 'Sid Phillips', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
@@ -15,7 +15,7 @@
     { tipo: 'Humano', nome: 'Zelador', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
     { tipo: 'Humano', nome: 'Geri', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
 
-    { tipo: 'Brinquedo', nome: 'Xerife Woody Pride', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3']},
+    { tipo: 'Brinquedo', nome: 'Xerife Woody Pride', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['woody1', 'woody2', 'woody3']},
     { tipo: 'Brinquedo', nome: 'Buzz Lightyear', falas: ['Ao infinito e além!', 'Isto não é voar. Isto é cair, com estilo!', 'Nunca duvidei de mim mesmo, Comandante.'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
     { tipo: 'Brinquedo', nome: 'Jessie', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
     { tipo: 'Brinquedo', nome: 'Sr. Cabeça de Batata', falas: ['Meu nome é Xerife Woody!', 'Puxa, que bom ver você!', 'Você é meu delegado preferido'], foto: ['buzzlightyear1', 'buzzlightyear2', 'buzzlightyear3'] },
@@ -84,7 +84,7 @@ $('.foto').change(function () {
             indice = i;
         }
     }
-
+    
     console.log(personagemselecionado);
     if (foto == 'Foto 1') {
         $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[0] + '.jpg" class="card-img-top"/>');
@@ -95,6 +95,9 @@ $('.foto').change(function () {
     if (foto == 'Foto 3') {
         $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[2] + '.jpg" class="card-img-top"/>');
     }
+
+    var fotoSelecionada = $('.foto option:selected').val();
+    console.log(fotoSelecionada); 
 })
                                                              // Adicionando nomes e falas no card
 $(".tipo").change(function () {

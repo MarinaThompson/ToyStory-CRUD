@@ -16,6 +16,7 @@ namespace ToyStory_CRUD.Models
         
         [Required]
         public string Fala { get; set; }
-               
+
+        public string Foto { get; set; }
     }
 }

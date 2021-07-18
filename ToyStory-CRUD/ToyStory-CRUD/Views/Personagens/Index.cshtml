@@ -13,7 +13,8 @@
 @foreach (var item in Model)
 {
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="~/img/buzzlightyear2.jpg" alt="Card image cap">
+        @*<img class="card-img-top" src="~/img/'@Html.DisplayFor(modelItem => item.Foto)'.jpg" alt="Card image cap">*@
+        <h2>@Html.DisplayFor(modelItem => item.Foto)</h2>
         <div class="card-body">
             <h4 class="card-title">
                 @Html.DisplayFor(modelItem => item.Tipo)
