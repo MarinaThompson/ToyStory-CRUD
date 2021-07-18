@@ -2,9 +2,12 @@
 
 @{
     ViewData["Title"] = "Details";
+    var imagem = Model.Foto;
+    var imagePath = "/img/" + imagem + ".jpg";
+
 }
 
-<h1>Details</h1>
+<h1>Detalhes</h1>
 
 <div>
     <h4>Personagem</h4>
@@ -32,7 +35,8 @@
             @Html.DisplayNameFor(model => model.Foto)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Foto)
+            
+            <img class="card-img-top imagem-card" src="@imagePath" alt="Imagem do Personagem escolhido">
         </dd>
     </dl>
 </div>
