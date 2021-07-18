@@ -9,8 +9,8 @@ using ToyStory_CRUD.Data;
 namespace ToyStory_CRUD.Migrations
 {
     [DbContext(typeof(ToyStory_CRUDContext))]
-    [Migration("20210718120045_novaTabela")]
-    partial class novaTabela
+    [Migration("20210718121031_Personagem")]
+    partial class Personagem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

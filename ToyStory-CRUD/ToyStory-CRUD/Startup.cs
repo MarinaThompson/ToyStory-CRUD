@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ToyStory_CRUD.Data;
 
+
 namespace ToyStory_CRUD
 {
     public class Startup
@@ -29,6 +30,8 @@ namespace ToyStory_CRUD
 
             services.AddDbContext<ToyStory_CRUDContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ToyStory_CRUDContext")));
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

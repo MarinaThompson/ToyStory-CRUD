@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ToyStory_CRUD.Data;
 using ToyStory_CRUD.Models;
@@ -16,11 +19,13 @@ namespace ToyStory_CRUD.Controllers
             _context = context;
         }
 
+        // GET: Personagens
         public async Task<IActionResult> Index()
         {
             return View(await _context.Personagem.ToListAsync());
         }
 
+        // GET: Personagens/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,15 +43,18 @@ namespace ToyStory_CRUD.Controllers
             return View(personagem);
         }
 
+        // GET: Personagens/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        
+        // POST: Personagens/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nome,Tipo,Fala")] Personagem personagem)
+        public async Task<IActionResult> Create([Bind("ID,Nome,Tipo,Fala,Foto")] Personagem personagem)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +64,8 @@ namespace ToyStory_CRUD.Controllers
             }
             return View(personagem);
         }
-        
+
+        // GET: Personagens/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -71,10 +80,13 @@ namespace ToyStory_CRUD.Controllers
             }
             return View(personagem);
         }
-               
+
+        // POST: Personagens/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Tipo,Fala")] Personagem personagem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Tipo,Fala,Foto")] Personagem personagem)
         {
             if (id != personagem.ID)
             {
@@ -104,7 +116,7 @@ namespace ToyStory_CRUD.Controllers
             return View(personagem);
         }
 
-        
+        // GET: Personagens/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -122,7 +134,7 @@ namespace ToyStory_CRUD.Controllers
             return View(personagem);
         }
 
-        
+        // POST: Personagens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

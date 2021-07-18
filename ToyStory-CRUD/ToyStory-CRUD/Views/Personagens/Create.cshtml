@@ -44,21 +44,15 @@
             </div>
 
             <div class="form-group">
-                <label class="visually-hidden control-label" for="fala" asp-for="Foto">Fala</label>
-                <input asp-for="Foto" class="form-control" style="border-color:black" />          
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-
-            @*<div class="form-group">
-            <label class="visually-hidden control-label" for="foto" asp-for="Foto">Foto</label>
-            <select class="form-control form-select foto" id="foto" asp-for="Foto">
-                <option selected>Escolha...</option>
-                <option value="Foto">Foto 1</option>
-                <option value="Foto">Foto 2</option>
-                <option value="Foto">Foto 3</option>
-            </select>
-            <span asp-validation-for="Foto" class="text-danger"></span>
-        </div>*@
+                    <label class="visually-hidden control-label" for="foto" asp-for="Foto">Foto</label>
+                    <select class="form-control form-select foto" id="foto" asp-for="Foto">
+                        <option selected>Escolha...</option>
+                        <option value="">Foto 1</option>
+                        <option value="">Foto 2</option>
+                        <option value="">Foto 3</option>
+                    </select>
+                    <span asp-validation-for="Foto" class="text-danger"></span>
+                </div>
 
             <div class="form-group">
                 <input type="submit" value="Adicionar" class="btn btn-primary" />
@@ -66,9 +60,9 @@
         </form>
     </div>
     <div class="col-md-4 card">
-       <div class="imagemDinamica">
-           
-       </div>
+        <div class="imagemDinamica">
+
+        </div>
         <div class="card-body">
             <h4 class="card-title tipoSelecionado text-center"></h4>
             <h5 class="card-title nomeSelecionado text-center"></h5>
@@ -80,7 +74,6 @@
 <div>
     <a asp-action="Index">Voltar para a lista</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

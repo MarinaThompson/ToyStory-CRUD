@@ -75,29 +75,33 @@ $(".nome").change(function () {
 
 
 $('.foto').change(function () {
-    var foto = $(this).val();
+    var foto = $('.foto :selected').text();      
     var personagemselecionado = $('.nome option:selected').val();
-    var indice;
-
+    var indice;   
     for (var i = 0; i < personagens.length; i++) {
         if (personagens[i].nome == personagemselecionado) {
             indice = i;
         }
     }
-    
-    console.log(personagemselecionado);
     if (foto == 'Foto 1') {
         $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[0] + '.jpg" class="card-img-top"/>');
+        imagemSelecionada = personagens[indice].foto[0];
+        $('.foto :selected').val(personagens[indice].foto[0]);
+        console.log($('.foto :selected').val());
     }
     if (foto == 'Foto 2') {
         $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[1] + '.jpg" class="card-img-top"/>');
+        imagemSelecionada = personagens[indice].foto[1]
+        $('.foto :selected').val(personagens[indice].foto[1]);
+        console.log($('.foto :selected').val());
     }
     if (foto == 'Foto 3') {
         $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[2] + '.jpg" class="card-img-top"/>');
-    }
-
-    var fotoSelecionada = $('.foto option:selected').val();
-    console.log(fotoSelecionada); 
+        imagemSelecionada = personagens[indice].foto[2];
+        $('.foto :selected').val(personagens[indice].foto[2]);
+        console.log($('.foto :selected').val());
+    }    
+   
 })
                                                              // Adicionando nomes e falas no card
 $(".tipo").change(function () {
@@ -111,5 +115,3 @@ $(".nome").change(function () {
 $(".fala").change(function () {
     $(".falaSelecionada").html($('.fala option:selected').val());
 })
-
-
