@@ -26,12 +26,10 @@ namespace ToyStory_CRUD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews();            
 
             services.AddDbContext<ToyStory_CRUDContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ToyStory_CRUDContext")));
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

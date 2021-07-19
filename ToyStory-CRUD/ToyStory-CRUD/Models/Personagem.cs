@@ -19,5 +19,10 @@ namespace ToyStory_CRUD.Models
 
         [Required]
         public string Foto { get; set; }
+
+
+        public int? CenarioId { get; set; }
+
+        public virtual Cenario Cenario { get; set; }
     }
 }

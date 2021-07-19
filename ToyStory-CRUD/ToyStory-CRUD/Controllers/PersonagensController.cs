@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,7 +20,8 @@ namespace ToyStory_CRUD.Controllers
         // GET: Personagens
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Personagem.ToListAsync());
+            var toyStory_CRUDContext = _context.Personagem.Include(p => p.Cenario);
+            return View(await toyStory_CRUDContext.ToListAsync());
         }
 
         // GET: Personagens/Details/5
@@ -34,6 +33,7 @@ namespace ToyStory_CRUD.Controllers
             }
 
             var personagem = await _context.Personagem
+                .Include(p => p.Cenario)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (personagem == null)
             {
@@ -46,13 +46,14 @@ namespace ToyStory_CRUD.Controllers
         // GET: Personagens/Create
         public IActionResult Create()
         {
+            ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome");
             return View();
         }
 
-        
+        // POST: Personagens/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nome,Tipo,Fala,Foto")] Personagem personagem)
+        public async Task<IActionResult> Create([Bind("ID,Nome,Tipo,Fala,Foto,CenarioId")] Personagem personagem)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +61,7 @@ namespace ToyStory_CRUD.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome", personagem.CenarioId);
             return View(personagem);
         }
 
@@ -76,13 +78,14 @@ namespace ToyStory_CRUD.Controllers
             {
                 return NotFound();
             }
+            ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome", personagem.CenarioId);
             return View(personagem);
         }
 
         // POST: Personagens/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Tipo,Fala,Foto")] Personagem personagem)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Tipo,Fala,Foto,CenarioId")] Personagem personagem)
         {
             if (id != personagem.ID)
             {
@@ -109,6 +112,7 @@ namespace ToyStory_CRUD.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome", personagem.CenarioId);
             return View(personagem);
         }
 
@@ -121,6 +125,7 @@ namespace ToyStory_CRUD.Controllers
             }
 
             var personagem = await _context.Personagem
+                .Include(p => p.Cenario)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (personagem == null)
             {

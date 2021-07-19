@@ -58,23 +58,28 @@
                 <span asp-validation-for="Foto" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <label asp-for="CenarioId" class="control-label"></label>
+                <select asp-for="CenarioId" class="form-control" asp-items="ViewBag.CenarioId"></select>
+                <span asp-validation-for="CenarioId" class="text-danger"></span>
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
-       <div class="col-md-4 card">
-           <div class="imagemDinamica">
-               <img class="card-img-top imagem-card" src="@imagePath" alt="Imagem do Personagem escolhido">
-           </div>
-            <div class="card-body">
-                <h4 class="card-title tipoSelecionado text-center">@Model.Tipo</h4>
-                <h5 class="card-title nomeSelecionado text-center">@Model.Nome</h5>
-                <p class="card-text falaSelecionada text-center">@Model.Fala</p>
-            </div>
+    <div class="col-md-4 card">
+        <div class="imagemDinamica">
+            <img class="card-img-top imagem-card" src="@imagePath" alt="Imagem do Personagem escolhido">
         </div>
-    
+        <div class="card-body">
+            <h4 class="card-title tipoSelecionado text-center">@Model.Tipo</h4>
+            <h5 class="card-title nomeSelecionado text-center">@Model.Nome</h5>
+            <p class="card-text falaSelecionada text-center">@Model.Fala</p>
+        </div>
+    </div>
+
 </div>
 
 <div>
@@ -84,3 +89,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
