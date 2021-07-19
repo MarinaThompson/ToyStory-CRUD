@@ -25,7 +25,6 @@
     { tipo: 'Animal', nome: 'Brutus', falas: [], foto: ['butus1', 'brutus2', 'brutus3'] }
 ]
 
-
                                                        // POPULANDO SELECT NOME DE ACORDO COM O SELECT TIPO
 
 $(".tipo").change(function () {
@@ -35,6 +34,10 @@ $(".tipo").change(function () {
         console.log(tipo);
         $('.fala').prop('disabled', true);
     }
+    else {
+        $('.fala').prop('disabled', false); 
+    }
+
     var options = '<option value="">Nomes</option>';
     $(personagens).each((index, value) => {
             if (value.tipo == tipo) {
@@ -83,7 +86,7 @@ $('.foto').change(function () {
         $('.foto :selected').val(personagens[indice].foto[2]);        
     }  
 })
-                                                             // Adicionando nomes e falas no card
+                                                          // Adicionando nome, fala e tipo no card
 $(".tipo").change(function () {
     $(".tipoSelecionado").html($('.tipo option:selected').val());
 });

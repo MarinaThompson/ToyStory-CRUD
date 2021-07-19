@@ -11,6 +11,6 @@ namespace ToyStory_CRUD.Models
 
         public string Nome { get; set; }
 
-        public ICollection<Personagem> Personagens { get; set; }
+        
     }
 }

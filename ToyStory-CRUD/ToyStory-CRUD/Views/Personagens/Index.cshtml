@@ -15,7 +15,7 @@
     <p>
         Filtrar por cenário
         <select asp-for="PersonagemCenario" asp-items="Model.Cenarios">
-            <option value="">All</option>
+            <option value="">Todos</option>
         </select>
         <input type="submit" value="Filtrar" />
     </p>
@@ -32,12 +32,11 @@
             <div class="card">
                 <img class="card-img-top imagem-card" src="@imagePath" alt="Imagem do Personagem escolhido">
                 <div class="card-body">
-                    <h4 class="card-title">
-                        @Html.DisplayFor(modelItem => item.Tipo)
-                    </h4>
-                    <h5 class="card-subtitle">
+                    <h3 class="card-title">
                         @Html.DisplayFor(modelItem => item.Nome)
-                        @Html.DisplayFor(modelItem => item.Cenario.Nome)
+                    </h3>
+                    <h5 class="card-subtitle">
+                        @Html.DisplayFor(modelItem => item.Tipo)                        
                     </h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Fala)</p>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

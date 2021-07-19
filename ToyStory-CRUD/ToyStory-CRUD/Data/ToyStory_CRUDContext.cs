@@ -14,6 +14,7 @@ namespace ToyStory_CRUD.Data
         {
         }
 
-        public DbSet<ToyStory_CRUD.Models.Personagem> Personagem { get; set; }
+        public DbSet<Personagem> Personagem { get; set; }
+        public DbSet<Cenario> Cenario { get; set; }
     }
 }
