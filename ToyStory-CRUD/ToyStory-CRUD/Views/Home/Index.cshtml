@@ -2,18 +2,20 @@
     ViewData["Title"] = "Toy Story";
 }
 
+<h2 class="text-center">Bem vindo ao Toy Story CRUD!</h2>
+
 <div class="container">
     <div class="row">
         <div class="col-4">
-            <p>Toy Story é um filme americano de animação, aventura e comédia. É conhecido por ser o primeiro filme da história do cinema a ter sido compilado inteiramente por ferramentas de computação gráfica.
+            <p class="text-justify">Toy Story é um filme americano de animação, aventura e comédia. É conhecido por ser o primeiro filme da história do cinema a ter sido compilado inteiramente por ferramentas de computação gráfica.
             A história se passa num mundo onde os brinquedos têm a vida e fingem ser inanimados quando os humanos estão por perto, com o enredo centrando-se na relação entre Woody, um velho boneco caubói a corda, e Buzz 
             Lightyear, um moderno brinquedo espacial. 
             </p>
-            <a class="text-dark" asp-area="" asp-controller="Personagens" asp-action="Create">Criar Personagem</a>
+            <a class="text-dark btn btn-outline-dark" asp-area="" asp-controller="Personagens" asp-action="Create">Criar Personagem</a>
 
         </div>
         <div class="col-8">
-            <img src="~/img/capa.jpg" alt="Imagem com diversos personagens de Toy Story" class="img-fluid" />
+            <img src="~/img/capa.jpg" alt="Imagem com diversos personagens de Toy Story" style="height:500px; width:400px" class="img-home" />
         </div>
     </div>
 </div>
