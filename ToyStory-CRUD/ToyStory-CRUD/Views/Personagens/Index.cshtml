@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ToyStory_CRUD.Models.Personagem>
+﻿@model ToyStory_CRUD.Models.PersonagemCenarioViewModel
 
 
 @{
@@ -11,9 +11,18 @@
     <a asp-action="Create">Criar novo</a>
 </p>
 
+<form asp-controller="Personagens" asp-action="Index" method="get">
+    <p>
+        Filtrar por cenário
+        <select asp-for="PersonagemCenario" asp-items="Model.Cenarios">
+            <option value="">All</option>
+        </select>
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
 
 <div class="card-group">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Personagens)
     {
         var imagem = item.Foto;
         var imagePath = "/img/" + imagem + ".jpg";

@@ -18,10 +18,27 @@ namespace ToyStory_CRUD.Controllers
         }
 
         // GET: Personagens
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string personagemCenario)
         {
-            var toyStory_CRUDContext = _context.Personagem.Include(p => p.Cenario);
-            return View(await toyStory_CRUDContext.ToListAsync());
+
+            IQueryable<string> cenarioQuery = from c in _context.Personagem
+                                              orderby c.Cenario.Nome
+                                              select c.Cenario.Nome;
+            var personagens = from c in _context.Personagem
+                              select c;
+
+            if (!string.IsNullOrEmpty(personagemCenario))
+            {
+                personagens = personagens.Where(x => x.Cenario.Nome == personagemCenario);
+            }
+
+            var personagemCenarioVM = new PersonagemCenarioViewModel
+            {
+                Cenarios = new SelectList(await cenarioQuery.Distinct().ToListAsync()), 
+                Personagens = await personagens.ToListAsync()
+            };
+            var toyStory_Context = _context.Personagem.Include(p => p.Cenario);
+            return View(personagemCenarioVM);
         }
 
         // GET: Personagens/Details/5
