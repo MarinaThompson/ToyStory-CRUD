@@ -1,21 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Toy Story";
 }
+<link rel="stylesheet" href="~\css\home2.css" />
 
-<h2 class="text-center">Bem vindo ao Toy Story CRUD!</h2>
 
-<div class="container">
-    <div class="row">
-        <div class="col-4">
-            <p class="text-justify">Toy Story é um filme americano de animação, aventura e comédia. É conhecido por ser o primeiro filme da história do cinema a ter sido compilado inteiramente por ferramentas de computação gráfica.
-            A história se passa num mundo onde os brinquedos têm a vida e fingem ser inanimados quando os humanos estão por perto, com o enredo centrando-se na relação entre Woody, um velho boneco caubói a corda, e Buzz 
-            Lightyear, um moderno brinquedo espacial. 
-            </p>
-            <a class="text-dark btn btn-outline-dark" asp-area="" asp-controller="Personagens" asp-action="Create">Criar Personagem</a>
-
+<div class="quadro_principal">
+    <div class="quadro">
+        <div class="primeira_linha">
+            <img class="logo" src="~/img/logo.png"/>
+            <h2 class="titulo">Bem vindo ao CRUD de Toy Story</h2>
         </div>
-        <div class="col-8">
-            <img src="~/img/capa.jpg" alt="Imagem com diversos personagens de Toy Story" style="height:500px; width:400px" class="img-home" />
+        <div class="segunda_linha">
+            <p class="descricao" style="text-align:justify">
+                Toy Story é um filme americano de animação, aventura e comédia. É conhecido por ser o primeiro filme da história do cinema a ter sido compilado inteiramente por ferramentas de computação gráfica.
+                A história se passa num mundo onde os brinquedos têm a vida e fingem ser inanimados quando os humanos estão por perto, com o enredo centrando-se na relação entre Woody, um velho boneco caubói a corda, e Buzz
+                Lightyear, um moderno brinquedo espacial.
+            </p>           
+        </div>
+        <div class="terceira_linha">
+            <div class="botao_criar">
+                <h5>Você pode começar criando um novo personagem</h5>
+                <a class="btn btn-outline-primary" asp-area="" asp-controller="Personagens" asp-action="Create">Criar Personagem</a>
+            </div>
+            <div class="botao_lista">
+                <h5>Ou também pode ver a lista de personagens criados</h5>
+                <a class="btn btn-outline-primary" asp-area="" asp-controller="Personagens" asp-action="Index">Ver Personagem</a>
+            </div>
+            <div class="imagem_personagens">
+                <img src="~/img/personagens.png" />
+            </div>
         </div>
     </div>
 </div>

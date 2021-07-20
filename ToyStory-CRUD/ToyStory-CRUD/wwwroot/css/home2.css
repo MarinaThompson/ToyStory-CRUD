@@ -1,0 +1,39 @@
+﻿body{
+    background: url("/img/background.jpg");   
+}
+
+.img-home{
+    width: 80vw;
+    height: 70vh;
+}
+
+.quadro_principal {
+    background-color: white;   
+    height: 80vh;
+    width: 80vw;
+    margin-top: 3.7rem;
+    border-radius: 6px;
+    padding: 10px 20px; 
+}
+
+.titulo{
+    width: 70%;
+    text-align:center;
+}
+
+.primeira_linha{
+    display: flex; 
+    align-items: center;
+}
+.segunda_linha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+ .terceira_linha {
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
