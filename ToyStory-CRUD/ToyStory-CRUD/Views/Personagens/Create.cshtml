@@ -4,80 +4,81 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Criar</h1>
+<div class="quadro_principal_lista">
+    <h1 class="text-center">Criar Personagem</h1>    
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<h4>Personagem</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Tipo">Tipo</label>
+                    <select class="form-control form-select tipo" id="tipo" asp-for="Tipo">
+                        <option selected>Escolha...</option>
+                        <option value="Humano">Humano</option>
+                        <option value="Brinquedo">Brinquedo</option>
+                        <option value="Animal">Animal</option>
+                    </select>
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                </div>
 
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="nome" asp-for="Nome">Nome</label>
 
-            <div class="form-group">
-                <label class="visually-hidden control-label" for="tipo" asp-for="Tipo">Tipo</label>
-                <select class="form-control form-select tipo" id="tipo" asp-for="Tipo">
-                    <option selected>Escolha...</option>
-                    <option value="Humano">Humano</option>
-                    <option value="Brinquedo">Brinquedo</option>
-                    <option value="Animal">Animal</option>
-                </select>
-                <span asp-validation-for="Tipo" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label class="visually-hidden control-label" for="nome" asp-for="Nome">Nome</label>
-
-                <select class="form-control form-select nome" id="nome" asp-for="Nome">
-                    <option value="">Nomes</option>
-                </select>
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
+                    <select class="form-control form-select nome" id="nome" asp-for="Nome">
+                        <option value="">Nomes</option>
+                    </select>
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
 
 
-            <div class="form-group">
-                <label class="visually-hidden control-label" for="fala" asp-for="Fala">Fala</label>
-                <select class="form-control form-select fala" id="fala" asp-for="Fala">
-                    <option value="">Falas</option>
-                </select>
-                <span asp-validation-for="Fala" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="fala" asp-for="Fala">Fala</label>
+                    <select class="form-control form-select fala" id="fala" asp-for="Fala">
+                        <option value="">Falas</option>
+                    </select>
+                    <span asp-validation-for="Fala" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label class="visually-hidden control-label" for="foto" asp-for="Foto">Foto</label>
-                <select class="form-control form-select foto" id="foto" asp-for="Foto">
-                    <option selected>Escolha...</option>
-                    <option value="">Foto 1</option>
-                    <option value="">Foto 2</option>
-                    <option value="">Foto 3</option>
-                </select>
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="foto" asp-for="Foto">Foto</label>
+                    <select class="form-control form-select foto" id="foto" asp-for="Foto">
+                        <option selected>Escolha...</option>
+                        <option value="">Foto 1</option>
+                        <option value="">Foto 2</option>
+                        <option value="">Foto 3</option>
+                    </select>
+                    <span asp-validation-for="Foto" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="CenarioId" class="control-label">Cenário</label>
-                <select asp-for="CenarioId" class="form-control" asp-items="ViewBag.CenarioId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-    <div class="col-md-4 card">
-        <div class="imagemDinamica">
-
+                <div class="form-group">
+                    <label asp-for="CenarioId" class="control-label">Cenário</label>
+                    <select asp-for="CenarioId" class="form-control" asp-items="ViewBag.CenarioId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Criar" class="btn btn-primary" />
+                </div>
+            </form>
         </div>
-        <div class="card-body">
-            <h4 class="card-title tipoSelecionado text-center"></h4>
-            <h5 class="card-title nomeSelecionado text-center"></h5>
-            <p class="card-text falaSelecionada text-center"></p>
-        </div>
-    </div>
+        <div class="col-md-4 card">
+            <div class="imagemDinamica">
 
+            </div>
+            <div class="card-body">
+                <h5 class="card-title nomeSelecionado text-center"></h5>
+                <h4 class="card-title tipoSelecionado text-center"></h4>
+                <p class="card-text falaSelecionada text-center"></p>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <a asp-action="Index">Voltar para a lista</a>
+    </div>
 </div>
-<div>
-    <a asp-action="Index">Voltar para a lista</a>
-</div>
+
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

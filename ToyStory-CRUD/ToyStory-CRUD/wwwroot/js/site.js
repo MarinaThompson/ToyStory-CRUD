@@ -71,17 +71,17 @@ $('.foto').change(function () {
         }
     }
     if (foto == 'Foto 1') {
-        $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[0] + '.jpg" class="card-img-top"/>');
+        $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[0] + '.jpg" class="card-img-top imagem-card"/>');
         imagemSelecionada = personagens[indice].foto[0];
         $('.foto :selected').val(personagens[indice].foto[0]);      
     }
     if (foto == 'Foto 2') {
-        $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[1] + '.jpg" class="card-img-top"/>');
+        $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[1] + '.jpg" class="card-img-top imagem-card"/>');
         imagemSelecionada = personagens[indice].foto[1]
         $('.foto :selected').val(personagens[indice].foto[1]);       
     }
     if (foto == 'Foto 3') {
-        $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[2] + '.jpg" class="card-img-top"/>');
+        $(".imagemDinamica").html('<img src="/img/' + personagens[indice].foto[2] + '.jpg" class="card-img-top imagem-card"/>');
         imagemSelecionada = personagens[indice].foto[2];
         $('.foto :selected').val(personagens[indice].foto[2]);        
     }  
