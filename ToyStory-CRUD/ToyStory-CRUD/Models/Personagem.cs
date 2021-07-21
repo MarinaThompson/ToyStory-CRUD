@@ -22,7 +22,6 @@ namespace ToyStory_CRUD.Models
 
 
         public int? CenarioId { get; set; }
-
         public virtual Cenario Cenario { get; set; }
     }
 }

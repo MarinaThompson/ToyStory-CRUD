@@ -7,9 +7,10 @@
 }
 <div class="quadro_principal_lista">
     <h3 class="text-center">Tem certeza que você deseja excluir este personagem?</h3>
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
     <div>
         <hr />
-        <dl class="row">            
+        <dl class="row">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Nome)
             </dt>

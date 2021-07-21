@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -52,6 +53,7 @@ namespace ToyStory_CRUD.Controllers
             var personagem = await _context.Personagem
                 .Include(p => p.Cenario)
                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (personagem == null)
             {
                 return NotFound();
@@ -70,15 +72,22 @@ namespace ToyStory_CRUD.Controllers
         // POST: Personagens/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nome,Tipo,Fala,Foto,CenarioId")] Personagem personagem)
+        public async Task<IActionResult> Create([Bind("Nome,Tipo,Fala,Foto,CenarioId")] Personagem personagem)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(personagem);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(personagem);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome", personagem.CenarioId);
             }
-            ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome", personagem.CenarioId);
+            catch(DbUpdateException e)
+            {
+                ModelState.AddModelError("", "Não foi possível realizar essa operação");
+            }
             return View(personagem);
         }
 
@@ -100,41 +109,37 @@ namespace ToyStory_CRUD.Controllers
         }
 
         // POST: Personagens/Edit/5
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Tipo,Fala,Foto,CenarioId")] Personagem personagem)
+        public async Task<IActionResult> EditPost(int? id)
         {
-            if (id != personagem.ID)
+            if (id == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            var personagemToUpdate = await _context.Personagem.FirstOrDefaultAsync(p => p.ID == id);
+            if (await TryUpdateModelAsync<Personagem>(
+                personagemToUpdate,
+                "",
+                p => p.Tipo, p => p.Nome, p => p.Fala, p => p.Foto, p => p.CenarioId))
             {
                 try
                 {
-                    _context.Update(personagem);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException ex)
                 {
-                    if (!PersonagemExists(personagem.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    Console.WriteLine(ex);
+                    ModelState.AddModelError("", "Não foi possível realizar essa operação");
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome", personagem.CenarioId);
-            return View(personagem);
-        }
-
+                ViewData["CenarioId"] = new SelectList(_context.Set<Cenario>(), "Id", "Nome", personagemToUpdate.CenarioId);
+                return View(personagemToUpdate);
+            }
+        
         // GET: Personagens/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
@@ -143,10 +148,17 @@ namespace ToyStory_CRUD.Controllers
 
             var personagem = await _context.Personagem
                 .Include(p => p.Cenario)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (personagem == null)
             {
                 return NotFound();
+            }
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Exclusão falhou."; 
             }
 
             return View(personagem);
@@ -158,9 +170,24 @@ namespace ToyStory_CRUD.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var personagem = await _context.Personagem.FindAsync(id);
-            _context.Personagem.Remove(personagem);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if(personagem == null)
+            {
+                return RedirectToAction(nameof(Index));
+
+            }
+            try
+            {
+                _context.Personagem.Remove(personagem);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch(DbUpdateException e)
+            {
+                Console.WriteLine(e);
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true }); 
+            }
+
+
         }
 
         private bool PersonagemExists(int id)
