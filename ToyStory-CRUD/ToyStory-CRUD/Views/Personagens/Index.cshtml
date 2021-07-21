@@ -5,47 +5,60 @@
     ViewData["Title"] = "Lista de personagens";
 
 }
+<link rel="stylesheet" href="~/css/listaPersonagens.css" />
 
-<h1 class="text-center">Lista de personagens</h1>
-<p>
-    <a asp-action="Create">Criar novo</a>
-</p>
+<div class="quadro_principal_lista">
 
-<form asp-controller="Personagens" asp-action="Index" method="get">
+    <h1 class="text-center">Lista de personagens</h1>
     <p>
-        Filtrar por cenário
-        <select asp-for="PersonagemCenario" asp-items="Model.Cenarios">
-            <option value="">Todos</option>
-        </select>
-        <input type="submit" value="Filtrar" />
+        <a asp-action="Create" class="btn btn-outline-primary">Criar novo personagem</a>
     </p>
-</form>
 
-<div class="card-group">
-    @foreach (var item in Model.Personagens)
-    {
-        var imagem = item.Foto;
-        var imagePath = "/img/" + imagem + ".jpg";
+    <form asp-controller="Personagens" asp-action="Index" method="get">
+        <p>
+            Filtrar por cenário
+            <select class="filtro" asp-for="PersonagemCenario" asp-items="Model.Cenarios">
+                <option value="">Todos</option>
+            </select>
+            <input type="submit" value="Buscar" class="botao-criar">
+        </p>
+    </form>
+    @if (Model.Personagens.Count > 0) {   
+    <div class="card-group">
+        @foreach (var item in Model.Personagens)
+        {
+            var imagem = item.Foto;
+            var imagePath = "/img/" + imagem + ".jpg";
 
 
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-            <div class="card">
-                <img class="card-img-top imagem-card" src="@imagePath" alt="Imagem do Personagem escolhido">
-                <div class="card-body">
-                    <h3 class="card-title">
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </h3>
-                    <h5 class="card-subtitle">
-                        @Html.DisplayFor(modelItem => item.Tipo)                        
-                    </h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Fala)</p>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="card">
+                    <img class="card-img-top imagem-card" src="@imagePath" alt="Imagem do Personagem escolhido">
+                    <div class="card-body">
+                        <div class="conteudo">
+                            <h3 class="card-title text-center">
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </h3>
+                            <h5 class="card-subtitle text-center">
+                                @Html.DisplayFor(modelItem => item.Tipo)
+                            </h5>
+                            <p class="card-text text-center fala">@Html.DisplayFor(modelItem => item.Fala)</p>
+                        </div>
+                        <footer class="card-footer text-center">
+                            <a class="option" asp-action="Edit" asp-route-id="@item.ID"><i class="fas fa-edit"></i></a> |
+                            <a class="option" asp-action="Details" asp-route-id="@item.ID"><i class="fas fa-info-circle"></i></a> |
+                            <a class="option" asp-action="Delete" asp-route-id="@item.ID"><i class="fas fa-trash"></i></a>
+                        </footer>
+
+                    </div>
                 </div>
-            </div>
-        </div>
-
-
+            </div>            
+            }
+    </div>
     }
+            else
+            {
+                <h2 class="text-center">Nenhum personagem cadastrado!</h2>
+            }
+    
 </div>

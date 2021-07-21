@@ -1,0 +1,53 @@
+﻿.filtro {
+    height: 26px;
+}
+
+.botao-criar {
+    border: 1px solid #000;
+    color: #000;
+    background: transparent; 
+}
+
+.quadro_principal_lista {
+    background-color: white;
+    width: 80vw;
+    height: 100%;
+    margin-top: 3.7rem;
+    border-radius: 6px;
+    padding: 10px 20px;
+}
+.imagem-card {
+    height: 250px;
+}
+
+.card{
+    margin-top: 2rem;
+    height: 90%;
+}
+
+.card-title{
+    font-size: 20px;
+}
+
+.card-subtitle{
+    font-size: 17px; 
+}
+
+.conteudo{
+    height: 75%;
+}
+
+.fala{
+    font-size: smaller;
+    color: grey;
+}
+
+.card-footer{
+    background: transparent; 
+    border: none;
+}
+
+.option{
+    text-decoration: none;
+    color: #000; 
+}
